@@ -15,6 +15,7 @@ import "leaflet-geosearch/dist/geosearch.css";
 import { GeoSearchControl, OpenStreetMapProvider } from "leaflet-geosearch";
 import { Polyline } from "react-leaflet";
 import AutoCompleteInput from "./AutoCompleteInput";
+import Openrouteservice from "openrouteservice-js";
 
 // Mumbai default center
 const center = [19.076, 72.8777];
@@ -53,36 +54,6 @@ const placeholderSensors = [
   },
 ];
 
-function SearchBox({ setSearchLocation }) {
-  const map = useMap();
-
-  useEffect(() => {
-    const provider = new OpenStreetMapProvider();
-
-    const searchControl = new GeoSearchControl({
-      provider,
-      style: "bar",
-      showMarker: false,
-      autoClose: true,
-      retainZoomLevel: false,
-    });
-    map.addControl(searchControl);
-
-    map.on("geosearch/showlocation", (result) => {
-      const { x: lng, y: lat, label } = result.location;
-      setSearchLocation({ lat, lng, label });
-      map.setView([lat, lng], 15); // Optional: zoom in to location
-    });
-
-    return () => {
-      map.removeControl(searchControl);
-      map.off("geosearch/showlocation");
-    };
-  }, [map, setSearchLocation]);
-
-  return null;
-}
-
 export default function LiveMap() {
   const [searchLocation, setSearchLocation] = useState(null);
   const [from, setFrom] = useState("");
@@ -93,61 +64,48 @@ export default function LiveMap() {
   const fetchRoute = async () => {
     try {
       const key =
-        "eyJvcmciOiI1YjNjZTM1OTc4NTExMTAwMDFjZjYyNDgiLCJpZCI6ImEwMTc1NDFiZWRiZjQ2YjA4OGMyNDk1MGM1ZjZhYzBkIiwiaCI6Im11cm11cjY0In0=";
+        "eyJvcmciOiI1YjNjZTM1OTc4NTExMTAwMDFjZjYyNDgiLCJpZCI6ImEwMTc1NDFiZWRiZjQ2YjA4OGMyNDk1MGM1ZjZhYzBkIiwiaCI6Im11cm11cjY0In0="; // Use your actual key here
 
-      const geocode = async (place) => {
-        const res = await fetch(
-          `https://api.openrouteservice.org/geocode/search?api_key=${key}&text=${encodeURIComponent(
-            place
-          )}`
-        );
-        const data = await res.json();
-        return data.features?.[0]?.geometry.coordinates || null;
-      };
+      const Geocode = new Openrouteservice.Geocode({ api_key: key });
+      const Directions = new Openrouteservice.Directions({ api_key: key });
 
-      const fromCoords = await geocode(from);
-      const toCoords = await geocode(to);
+      // 1. Geocode both places
+      const fromData = await Geocode.geocode({ text: from });
+      const toData = await Geocode.geocode({ text: to });
+
+      const fromCoords = fromData.features?.[0]?.geometry.coordinates;
+      const toCoords = toData.features?.[0]?.geometry.coordinates;
 
       if (!fromCoords || !toCoords) {
         alert("Could not geocode one of the addresses");
         return;
       }
 
-      const res = await fetch(
-        "https://api.openrouteservice.org/v2/directions/driving-car/geojson",
-        {
-          method: "POST",
-          headers: {
-            Authorization: key,
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            coordinates: [fromCoords, toCoords],
-          }),
-        }
-      );
+      // 2. Get directions
+      const routeData = await Directions.calculate({
+        coordinates: [fromCoords, toCoords],
+        profile: "driving-car",
+        format: "geojson",
+      });
 
-      const data = await res.json();
-
-      if (!data.features) {
-        alert("No route found.");
+      if (!routeData.features) {
+        alert("No route found");
         return;
       }
 
-      const coords = data.features[0].geometry.coordinates.map(([lng, lat]) => [
-        lat,
-        lng,
-      ]);
-      const summary = data.features[0].properties.summary;
+      const coords = routeData.features[0].geometry.coordinates.map(
+        ([lng, lat]) => [lat, lng]
+      );
+
+      const summary = routeData.features[0].properties.summary;
 
       setRouteCoords(coords);
-      setRouteSummary(summary); // contains duration & distance
+      setRouteSummary(summary); // has duration, distance
     } catch (err) {
       console.error("Route error:", err);
       alert("Could not fetch route.");
     }
   };
-  
 
   return (
     <>
@@ -192,16 +150,14 @@ export default function LiveMap() {
 
         <MapContainer
           center={center}
-          zoom={12}
+          zoom={13}
           style={{ height: "98vh", width: "100%" }}
         >
           <TileLayer
             attribution="&copy; OpenStreetMap"
             url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-            detectRetina={true}
+            // detectRetina={true}
           />
-
-          {/* <SearchBox setSearchLocation={setSearchLocation} /> */}
 
           {/* Marker for searched location */}
           {searchLocation && (
