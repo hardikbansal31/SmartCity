@@ -16,6 +16,7 @@ import { GeoSearchControl, OpenStreetMapProvider } from "leaflet-geosearch";
 import { Polyline } from "react-leaflet";
 import AutoCompleteInput from "./AutoCompleteInput";
 import Openrouteservice from "openrouteservice-js";
+import useTrafficSocket from "./useTrafficSocket";
 
 // Mumbai default center
 const center = [19.076, 72.8777];
@@ -60,6 +61,16 @@ export default function LiveMap() {
   const [to, setTo] = useState("");
   const [routeCoords, setRouteCoords] = useState([]);
   const [routeSummary, setRouteSummary] = useState(null);
+  const [sensorData, setSensorData] = useState([]);
+
+  useTrafficSocket((newEntry) => {
+    setSensorData((prev) => {
+      const id = `${newEntry.place}-${newEntry.latitude}-${newEntry.longitude}`;
+      if (prev.some((e) => e.id === id)) return prev; // avoid duplicates
+
+      return [...prev, { ...newEntry, id }];
+    });
+  });
 
   const fetchRoute = async () => {
     try {
@@ -169,21 +180,25 @@ export default function LiveMap() {
           )}
 
           {/* Marker for fake congestion sensor */}
-          {placeholderSensors.map((sensor) => (
+          {sensorData.map((sensor) => (
             <CircleMarker
               key={sensor.id}
-              center={[sensor.lat, sensor.lng]}
+              center={[sensor.latitude, sensor.longitude]}
               radius={10}
               pathOptions={{
                 color: sensor.congestionLevel >= 7 ? "red" : "green",
               }}
             >
               <Popup>
-                <strong>{sensor.name}</strong>
+                <strong>{sensor.place}</strong>
                 <br />
-                🚗 Vehicles: {sensor.vehicleCount}
+                🚗 Vehicles: {sensor.vehicle_count}
                 <br />
                 ⚠️ Alert: {sensor.alert || "None"}
+                <br />
+                Traffic flow: {sensor.traffic_flow || "none"}
+                <br />
+                vehicle density: {sensor.vehicle_density}
               </Popup>
             </CircleMarker>
           ))}
