@@ -120,20 +120,21 @@ export default function LiveMap() {
 
   return (
     <>
-      <div style={{ position: "relative" }}>
+      <div style={{ position: "relative", width:"100%", height:"100%"}}>
         <div
           style={{
             position: "absolute",
-            top: 10,
-            left: 10,
+            bottom: 70,
+            right: 10,
             zIndex: 1000,
-            background: "white",
+            backgroundColor: "#1B1B1B", // Changed from white to dark
+            color: "white", // Added for text color
             padding: "12px",
             borderRadius: "8px",
             display: "flex",
             flexDirection: "column",
             gap: "8px",
-            boxShadow: "0 2px 6px rgba(0,0,0,0.15)",
+            boxShadow: "0 4px 12px rgba(0,0,0,0.5)",
             width: "350px",
           }}
         >
@@ -145,7 +146,15 @@ export default function LiveMap() {
           <AutoCompleteInput placeholder="To" value={to} setValue={setTo} />
           <button
             onClick={fetchRoute}
-            style={{ padding: "8px", cursor: "pointer" }}
+            style={{ padding: "10px",
+            cursor: "pointer",
+            backgroundColor: "#dd6b20", // Orange background
+            color: "white",
+            border: "none",
+            borderRadius: "8px",
+            fontWeight: "bold",
+            transition: "background-color 0.2s",
+           }}
           >
             Show Route
           </button>

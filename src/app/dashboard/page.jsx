@@ -1,12 +1,24 @@
-"use client"
-import React from 'react'
 
-function page() {
+
+"use client";
+
+import React from 'react';
+import SidePanel from '../components/SidePanel';
+import LiveMapWrapper2 from '../components/LiveMapWrapper2'; // Make sure this path is correct
+
+export default function DashboardPage() {
   return (
-    <div>
+    
+    <div className="flex w-screen relative bg-black">
+      
+      
+      <SidePanel />
+
+      
+      <div className="flex-1 absolute top-0 right-0 ">
+        <LiveMapWrapper2 />
+      </div>
       
     </div>
-  )
+  );
 }
-
-export default page

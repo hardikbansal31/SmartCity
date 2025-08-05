@@ -50,8 +50,8 @@ export default function AutoCompleteInput({ placeholder, value, setValue }) {
           style={{
             position: "absolute",
             zIndex: 1000,
-            background: "white",
-            border: "1px solid #ccc",
+            background: "black", // Changed to black
+            border: "1px solid #4a5568", // A darker border to match
             listStyle: "none",
             margin: 0,
             padding: 0,
