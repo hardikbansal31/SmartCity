@@ -1,4 +1,4 @@
-import SidePanel from '../components/user/SidePanel'; 
+import SidePanel from '../components/User/SidePanel'; 
 
 export default function UserDashboardLayout({ children }) {
   return (
