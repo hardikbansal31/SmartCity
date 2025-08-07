@@ -14,9 +14,9 @@ import { useEffect, useState } from "react";
 import "leaflet-geosearch/dist/geosearch.css";
 import { GeoSearchControl, OpenStreetMapProvider } from "leaflet-geosearch";
 import { Polyline } from "react-leaflet";
-import AutoCompleteInput from "./AutoCompleteInput";
+import AutoCompleteInput from "../AutoCompleteInput";
 import Openrouteservice from "openrouteservice-js";
-import useTrafficSocket from "./useTrafficSocket";
+import useTrafficSocket from "../useTrafficSocket";
 
 // Mumbai default center
 const center = [19.076, 72.8777];

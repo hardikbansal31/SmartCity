@@ -2,6 +2,7 @@
 
 import React from 'react';
 // import googleLogo from '../assets/Google.png';
+import Link from 'next/link';
 
 const Register = () => {
   return (
@@ -74,9 +75,9 @@ const Register = () => {
         {/* Link to Login */}
         <p className="text-center text-sm text-gray-400 mt-6">
           Already have an account?{' '}
-          <a href="#" className="font-medium text-orange-500 hover:text-orange-400">
+          <Link href="/user/Login" className="font-medium text-orange-500 hover:text-orange-400">
             Login
-          </a>
+          </Link>
         </p>
       </div>
     </div>
