@@ -1,3 +1,4 @@
+"use client"
 import { useEffect } from "react";
 
 export default function useTrafficSocket(onData) {
@@ -9,13 +10,17 @@ export default function useTrafficSocket(onData) {
     };
 
     socket.onmessage = (event) => {
-      try {
-        const data = JSON.parse(event.data);
-        onData(data); // push to state in component
-      } catch (err) {
-        console.error("Invalid WebSocket message:", err);
-      }
-    };
+  try {
+    const data = JSON.parse(event.data);
+    if (data.type === "connected") {
+      console.log("✅ Server acknowledged connection");
+    } else {
+      onData(data); // Treat as sensor update
+    }
+  } catch (err) {
+    console.error("Invalid WebSocket message:", err);
+  }
+};
 
     socket.onclose = () => {
       console.log("❌ WebSocket connection closed");
