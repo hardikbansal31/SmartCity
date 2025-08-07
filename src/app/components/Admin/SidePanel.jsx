@@ -11,18 +11,22 @@ import {
   ClockIcon,
   ExclamationTriangleIcon,
   Cog6ToothIcon,
-  ArrowPathIcon
+  ArrowPathIcon,
+  SignalIcon,
+  WifiIcon
 } from '@heroicons/react/24/solid';
 
 // I've added the 'href' property to each item for navigation
 const navigationItems = [
-  { name: 'Live Map', href: '/', icon: MapIcon },
-  { name: 'Traffic Feed', href: '/traffic-feed', icon: DocumentTextIcon },
-  { name: 'Suggested Routes', href: '/suggested-routes', icon: MapIcon },
-  { name: 'Analytics', href: '/analytics', icon: ChartBarIcon },
-  { name: 'Historical Data', href: '/historical-data', icon: ClockIcon },
-  { name: 'Alerts', href: '/alerts', icon: ExclamationTriangleIcon },
-  { name: 'Setting', href: '/settings', icon: Cog6ToothIcon },
+  { name: 'Live Map', href: '/admin/dashboard', icon: MapIcon },
+  { name: 'Feed Manager', href: '/admin/#', icon: DocumentTextIcon },
+  { name: 'Route Manager', href: '/admin/#', icon: MapIcon },
+  { name: 'Analytics', href: '/admin/#', icon: ChartBarIcon },
+  { name: 'Historical Data', href: '/admin/#', icon: ClockIcon },
+  { name: 'Alerts', href: '/admin/#', icon: ExclamationTriangleIcon },
+  { name: 'Signal Controller', href: '/admin/#', icon: SignalIcon},
+  { name: 'User Broadcast', href: '/admin/#', icon: WifiIcon},
+  { name: 'Setting', href: '/admin/#', icon: Cog6ToothIcon },
 ];
 
 function SidePanel() {
