@@ -5,12 +5,12 @@ export default function UserDashboardLayout({ children }) {
   
     <section className="flex h-screen bg-black overflow-hidden">
       
-      <div className="flex-shrink-0">
+      <div className="flex-shrink-0 z-10">
         <SidePanel />
       </div>
 
     
-      <main className="flex-grow h-full overflow-y-auto">
+      <main className="flex-grow relative z-0 h-full overflow-y-auto">
         {children}
       </main>
       

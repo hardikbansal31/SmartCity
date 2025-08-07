@@ -17,12 +17,12 @@ const navigationItems = [
   { name: 'Analytics', icon: ChartBarIcon, active: false },
   { name: 'Historical Data', icon: ClockIcon, active: false },
   { name: 'Alerts', icon: ExclamationTriangleIcon, active: true },
-  { name: 'Setting', icon: Cog6ToothIcon, active: false },
+  { name: 'Settings', icon: Cog6ToothIcon, active: false },
 ];
 
 function SidePanel() {
   return (
-    <div className='sidepanel w-[20%] h-[calc(100vh-100px)] bg-[#1B1B1B] flex flex-col p-6 space-y-8'>
+    <div className='z-[10] sidepanel w-[20%] h-[calc(100vh-100px)] bg-[#1B1B1B] flex flex-col p-6 space-y-8'>
       {/* Logo Section */}
       {/* <div className="flex items-center gap-x-3">
         <ArrowPathIcon className="h-9 w-9 text-white" />
