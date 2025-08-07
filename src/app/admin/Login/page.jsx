@@ -9,7 +9,7 @@ const Login = () => {
     <div className="min-h-screen flex items-center justify-center text-white">
       {/* Form container with dark background and styling */}
       <div className="bg-gray-800 bg-opacity-80 backdrop-blur-sm p-8 rounded-2xl shadow-lg w-full max-w-md">
-        <h2 className="text-3xl font-bold text-center mb-8">Login</h2>
+        <h2 className="text-3xl font-bold text-center mb-8">Admin Login</h2>
         
         <form className="space-y-6">
           {/* Username Input */}
@@ -45,17 +45,6 @@ const Login = () => {
           </button>
         </form>
 
-        {/* Divider */}
-        <div className="flex items-center my-6">
-          <div className="flex-grow border-t border-gray-600"></div>
-        </div>
-
-        <p className="text-center text-sm text-gray-400 mt-6">
-          New User?{' '}
-          <Link href="/user/Register" className="font-medium text-orange-500 hover:text-orange-400">
-            Register
-          </Link>
-        </p>
       </div>
     </div>
   );
