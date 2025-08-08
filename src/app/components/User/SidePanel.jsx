@@ -18,11 +18,8 @@ import {
 const navigationItems = [
   { name: 'Live Map', href: '/user/dashboard', icon: MapIcon },
   { name: 'Traffic Feed', href: '/user/traffic-feed', icon: DocumentTextIcon },
-  { name: 'Suggested Routes', href: '/user/suggested-routes', icon: MapIcon },
   { name: 'Analytics', href: '/user/analytics', icon: ChartBarIcon },
-  { name: 'Historical Data', href: '/user/historical-data', icon: ClockIcon },
   { name: 'Alerts', href: '/user/alerts', icon: ExclamationTriangleIcon },
-  { name: 'Setting', href: '/user/settings', icon: Cog6ToothIcon },
 ];
 
 function SidePanel() {
@@ -30,7 +27,7 @@ function SidePanel() {
 
   return (
     // Using fixed width and full height for persistence
-    <div className='sidepanel w-64 h-screen bg-[#1B1B1B] flex flex-col p-6 space-y-8 fixed'>
+    <div className='sidepanel w-64 z-10 h-screen bg-[#1B1B1B] flex flex-col p-6 space-y-8 fixed'>
       
 
       {/* Navigation Links */}
