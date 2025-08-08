@@ -19,14 +19,9 @@ import {
 // I've added the 'href' property to each item for navigation
 const navigationItems = [
   { name: 'Live Map', href: '/admin/dashboard', icon: MapIcon },
-  { name: 'Feed Manager', href: '/admin/#', icon: DocumentTextIcon },
-  { name: 'Route Manager', href: '/admin/#', icon: MapIcon },
-  { name: 'Analytics', href: '/admin/#', icon: ChartBarIcon },
-  { name: 'Historical Data', href: '/admin/#', icon: ClockIcon },
-  { name: 'Alerts', href: '/admin/#', icon: ExclamationTriangleIcon },
-  { name: 'Signal Controller', href: '/admin/#', icon: SignalIcon},
-  { name: 'User Broadcast', href: '/admin/#', icon: WifiIcon},
-  { name: 'Setting', href: '/admin/#', icon: Cog6ToothIcon },
+  { name: 'Feed Manager', href: '/admin/feed-manager', icon: DocumentTextIcon },
+  { name: 'Analytics', href: '/user/analytics', icon: ChartBarIcon },
+  { name: 'Alerts', href: '/user/alerts', icon: ExclamationTriangleIcon },
 ];
 
 function SidePanel() {
