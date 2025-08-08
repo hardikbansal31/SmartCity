@@ -1,7 +1,7 @@
-import React from 'react';
+import React from "react";
 // import logoImage from '../assets/logo.png';
 
-import Link from 'next/link';
+import Link from "next/link";
 
 export default function Navbar() {
   return (
@@ -13,10 +13,19 @@ export default function Navbar() {
 
       {/* Right side: Navigation and Login Button */}
       <div className="flex items-center gap-x-8">
-        <Link href="/about" className="hover:text-gray-300">About Us</Link>
-        <Link href="/partner" className="hover:text-gray-300">Become a Partner</Link>
-        <Link href="/user/Register" className="hover:text-gray-300">Register</Link>
-        
+        <Link href="/user/dashboard" className="hover:text-gray-300">
+          User Dashboard
+        </Link>
+        <Link href="/about" className="hover:text-gray-300">
+          About Us
+        </Link>
+        <Link href="/partner" className="hover:text-gray-300">
+          Become a Partner
+        </Link>
+        <Link href="/user/Register" className="hover:text-gray-300">
+          Register
+        </Link>
+
         {/* The Login button now routes to your new /user/Login page */}
         <Link href="/user/Login">
           <button className="bg-orange-600 hover:bg-orange-700 text-white font-bold py-2 px-4 rounded">
