@@ -1,0 +1,95 @@
+/* LiveMap.css */
+
+/* --- User Location Dot --- */
+.user-location-dot {
+  background-color: #4a89f3; /* Google Maps blue */
+  border: 2px solid white;
+  border-radius: 50%;
+  width: 16px;
+  height: 16px;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+}
+
+/* --- Pulsating Halo Effect --- */
+.user-location-halo {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background-color: #4a89f3;
+  opacity: 0.5;
+  animation: pulse 2s infinite;
+  z-index: -1; /* Place it behind the dot */
+}
+
+@keyframes pulse {
+  0% {
+    transform: translate(-50%, -50%) scale(1);
+    opacity: 0.5;
+  }
+  70% {
+    transform: translate(-50%, -50%) scale(3);
+    opacity: 0;
+  }
+  100% {
+    transform: translate(-50%, -50%) scale(1);
+    opacity: 0;
+  }
+}
+
+/* --- Locate User Button --- */
+.locate-button {
+  position: absolute;
+  top: 85px; /* Adjust as needed */
+  left: 10px;
+  z-index: 1000;
+  background-color: white;
+  border: 2px solid rgba(0, 0, 0, 0.2);
+  border-radius: 4px;
+  width: 34px;
+  height: 34px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  box-shadow: 0 1px 5px rgba(0, 0, 0, 0.4);
+}
+
+.locate-button:hover {
+  background-color: #f4f4f4;
+}
+
+/* LiveMap.css */
+
+/* ... (keep existing styles for the dot and halo) ... */
+
+/* --- Action Buttons --- */
+.action-button {
+  padding: 10px;
+  cursor: pointer;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-weight: bold;
+  transition: background-color 0.2s;
+  font-size: 15px;
+}
+
+.action-button.primary {
+  background-color: #dd6b20; /* Orange for "Get Directions" */
+}
+
+.action-button.primary:hover {
+  background-color: #c05621;
+}
+
+.action-button.secondary {
+  background-color: #c53030; /* Red for "Stop Navigation" */
+}
+
+.action-button.secondary:hover {
+  background-color: #9b2c2c;
+}
