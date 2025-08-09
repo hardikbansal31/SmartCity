@@ -84,6 +84,19 @@ function LocateUserButton({ userLocation }) {
   );
 }
 
+function getAlertColor(alert) {
+  switch (alert) {
+    case "Jam":
+      return "red";
+    case "Accident":
+      return "orange";
+    case "Diversion":
+      return "blue";
+    default:
+      return "green"; // "None" or unknown
+  }
+}
+
 export default function LiveMap2() {
   const [from, setFrom] = useState("");
   const [to, setTo] = useState("");
@@ -278,13 +291,34 @@ export default function LiveMap2() {
           </Marker>
         )}
 
+        {/* {sensorData.map((sensor) => (
+          <CircleMarker
+            key={sensor.id}
+            center={[sensor.latitude, sensor.longitude]}
+          ></CircleMarker>
+        ))} */}
+
         {sensorData.map((sensor) => (
           <CircleMarker
             key={sensor.id}
             center={[sensor.latitude, sensor.longitude]}
-            // ... (sensor styling)
+            radius={8}
+            pathOptions={{
+              color: getAlertColor(sensor.alert),
+              fillColor: getAlertColor(sensor.alert),
+              fillOpacity: 0.7,
+            }}
           >
-            {/* ... (sensor popup) */}
+            <Popup>
+              <div>
+                <b>{sensor.place}</b> <br />
+                Alert: {sensor.alert} <br />
+                Vehicles: {sensor.vehicle_count} <br />
+                Density: {sensor.vehicle_density.toFixed(1)}% <br />
+                Flow: {sensor.traffic_flow.toFixed(1)} km/h <br />
+                Time: {sensor.time}
+              </div>
+            </Popup>
           </CircleMarker>
         ))}
 
