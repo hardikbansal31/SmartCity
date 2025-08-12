@@ -1,8 +1,8 @@
-'use client'; // Required for using hooks
+"use client"; // Required for using hooks
 
 import React from "react";
-import Link from 'next/link'; // Import Link for client-side navigation
-import { usePathname } from 'next/navigation'; // Import usePathname to get current URL
+import Link from "next/link"; // Import Link for client-side navigation
+import { usePathname } from "next/navigation"; // Import usePathname to get current URL
 
 import {
   MapIcon,
@@ -11,12 +11,15 @@ import {
   ClockIcon,
   ExclamationTriangleIcon,
   Cog6ToothIcon,
-  ArrowPathIcon
-} from '@heroicons/react/24/solid';
+  ArrowPathIcon,
+} from "@heroicons/react/24/solid";
 
 // I've added the 'href' property to each item for navigation
 const navigationItems = [
-  { name: 'Live Map', href: '/user/dashboard', icon: MapIcon },
+  { name: "Live Map", href: "/user/dashboard", icon: MapIcon },
+  { name: "Hazard", href: "/user/hazards", icon: MapIcon },
+  // { name: "Alerts", href: "/user/alerts", icon: MapIcon },
+  { name: "Reports", href: "/user/reports", icon: MapIcon },
   { name: 'Traffic Feed', href: '/user/traffic-feed', icon: DocumentTextIcon },
   { name: 'Analytics', href: '/user/analytics', icon: ChartBarIcon },
   { name: 'Alerts', href: '/user/alerts', icon: ExclamationTriangleIcon },
@@ -27,9 +30,7 @@ function SidePanel() {
 
   return (
     // Using fixed width and full height for persistence
-    <div className='sidepanel w-64 z-10 h-screen bg-[#1B1B1B] flex flex-col p-6 space-y-8 fixed'>
-      
-
+    <div className="sidepanel w-64 z-10 h-screen bg-[#1B1B1B] flex flex-col p-6 space-y-8 fixed">
       {/* Navigation Links */}
       <nav className="flex flex-col space-y-2">
         {navigationItems.map((item) => {
@@ -44,8 +45,8 @@ function SidePanel() {
               className={`flex items-center p-3 rounded-lg transition-colors duration-200
                 ${
                   isActive
-                    ? 'bg-orange-600 text-white' // Active link style
-                    : 'text-zinc-400 hover:bg-orange-600 hover:text-white' // Inactive link style
+                    ? "bg-orange-600 text-white" // Active link style
+                    : "text-zinc-400 hover:bg-orange-600 hover:text-white" // Inactive link style
                 }
               `}
             >

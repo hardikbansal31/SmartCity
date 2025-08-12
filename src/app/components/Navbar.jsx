@@ -45,7 +45,7 @@ export default function Navbar() {
         </Link>
         
 
-        {loggedIn ? (
+        {/* {loggedIn ? (
           // Logged in → show orange circle with user icon
           <div className="w-10 h-10 bg-orange-600 rounded-full flex items-center justify-center">
             <FaUserCircle size={22} />
@@ -64,7 +64,7 @@ export default function Navbar() {
           </Link>
           </>
           
-        )}
+        )} */}
       </div>
     </nav>
   );
