@@ -44,7 +44,7 @@ function Page() {
           <div className='alert-container w-full h-[55vh] flex-1 overflow-y-scroll space-y-4'>
             {filteredAlerts.map((alert, index) => (
               <AlertCard
-                key={index}
+                key={alert.id}
                 title={alert.alert || "Alert"}
                 location={alert.place || "Unknown Location"}
                 description={alert.description || "Detected · High Severity · Collision or Traffic Disruption"}
