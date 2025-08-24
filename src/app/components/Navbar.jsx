@@ -43,7 +43,9 @@ export default function Navbar() {
         <Link href="/partner" className="hover:text-gray-300">
           Become a Partner
         </Link>
-        
+        <a href="/apk/Saarthi.apk" download className="hover:text-gray-300">
+          Download Android App
+        </a>
 
         {/* {loggedIn ? (
           // Logged in → show orange circle with user icon
